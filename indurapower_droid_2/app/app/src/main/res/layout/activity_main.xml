@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:arc="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/car_bg"
+    android:scaleType="centerCrop">
+    <View
+        android:layout_width="@dimen/_10sdp"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/_15sdp"
+        android:id="@+id/anchor"
+        android:layout_alignParentTop="true"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <com.elitise.appv2.Logo_pathsView
+        android:id="@+id/logoBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/logoBar"
+        android:id="@+id/View0" />
+
+
+    <FrameLayout
+        android:id="@+id/drawer_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/View0">
+
+        <FrameLayout
+             android:id="@+id/frame_main_container"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+          </FrameLayout>
+
+    </FrameLayout>
+
+
+
+
+
+</RelativeLayout>

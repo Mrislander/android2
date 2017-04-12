@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Choose you battery&apos;s type"
+        android:id="@+id/textView12"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff6529"
+        android:gravity="center" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFF"
+        android:id="@+id/batteryInventory"
+        android:layout_gravity="center_horizontal"
+        android:choiceMode="singleChoice" />
+
+</LinearLayout>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/car_bg"
+    android:layout_height="match_parent"
+    tools:context="com.elitise.appv2.PurchaseDetail">
+    <LinearLayout
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/head"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="OUR INTELLIGENT SERIES BATTERIES"
+            android:layout_margin="@dimen/_3sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#ff6529"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="Batteries that have the power to start anything you drive. Long-lasting, dependable,safe,green technology. Our interactive app puts the power of InduraPower in the palm of your hand"
+            android:textSize="@dimen/_8sdp" />
+        
+        <ImageView
+            android:layout_height="@dimen/_100sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_3sdp"
+            android:id="@+id/batterySeriesImage"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="InduraPower"
+            android:layout_margin="@dimen/_3sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#ffffff"
+            android:id="@+id/batterySeries"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/head"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="MODEL NO"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/modeNo"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/modeNo"
+            android:id="@+id/v0"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="CC AMPS"
+            android:layout_below="@id/v0"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v0"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/CCAmps"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/CCAmps"
+            android:id="@+id/v1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="CAPACITY"
+            android:layout_below="@id/v1"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v1"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/CapacityVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/CapacityVal"
+            android:id="@+id/v2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="VOLTAGE"
+            android:layout_below="@id/v2"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v2"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/VoltageVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/VoltageVal"
+            android:id="@+id/v3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="CELL TYPE"
+            android:layout_below="@id/v3"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v3"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/CellTypeVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/CellTypeVal"
+            android:id="@+id/v4"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="APPLICATIONS"
+            android:layout_below="@id/v4"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v4"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/ApplicationsVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/ApplicationsVal"
+            android:id="@+id/v5"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="FEATURES"
+            android:layout_below="@id/v5"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v5"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/FeaturesVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/FeaturesVal"
+            android:id="@+id/v6"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="DIMENSIONS"
+            android:layout_below="@id/v6"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v6"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/DimensionVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/DimensionVal"
+            android:id="@+id/v7"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6529"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="WEIGHT"
+            android:layout_below="@id/v7"
+            android:textSize="@dimen/_8sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_3sdp"
+            android:text="N/A"
+            android:layout_below="@id/v7"
+            android:textSize="@dimen/_8sdp"
+            android:id="@+id/WeightVal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ffff"
+            android:layout_below="@id/DimensionVal"
+            android:id="@+id/v8"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:layout_margin="@dimen/_5sdp"
+        android:textAllCaps="false"
+        android:id="@+id/buyBtn"
+        style="?android:textAppearanceSmall"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:text="Buy Now"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/roundrect"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

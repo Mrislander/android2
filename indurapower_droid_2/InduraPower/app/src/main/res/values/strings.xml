@@ -1,0 +1,135 @@
+<!--
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+    <string name="app_name">Elitise</string>
+    <string name="title_activity_peripherals">Peripherals</string>
+    <string name="title_activity_peripheral">Battery Status</string>
+    <string name="notify">Notify</string>
+
+    <!-- Bluetooth -->
+    <string name="bluetoothNotSupported">Bluetooth Not Supported</string>
+    <string name="bluetoothNotEnabled">Bluetooth is Not Enabled</string>
+    <string name="bluetoothAdvertisingNotSupported">BLE Advertising Not Supported</string>
+    <string name="bluetoothDeviceNotConnected">Not connected to any Devices</string>
+
+    <!-- Adv -->
+    <string name="label_advertisingStatus">Advertising Status</string>
+    <string name="status_advertising">Advertising (Keep Screen On)</string>
+    <string name="status_notAdvertising">Not Advertising</string>
+    <string name="status_advDataTooLarge">Not Advertising. Advertisement is larger than 31 bytes.</string>
+    <string name="status_advFeatureUnsupported">Not Advertising. Advertising not supported.</string>
+    <string name="status_advInternalError">Not Advertising. Internal error occurred.</string>
+    <string name="status_advTooManyAdvertisers">Not Advertising. No advertising instance is available.</string>
+
+    <!-- Connection -->
+    <string name="label_connectionStatus">Connection Status</string>
+    <string name="status_devicesConnected">Devices Connected:</string>
+    <string name="status_errorWhenConnecting">An error occurred when connecting to a device. Error Code</string>
+
+    <!-- Battery Service -->
+    <!-- charge state 5-->
+    <string name="CHARGER_INIT">charger Init</string>
+    <string name="SYNC_CHARGER_ON">sync charger ON</string>
+    <string name="CHARGER_ON">charger on</string>
+    <string name="SYNC_CHARGER_OFF">sync charger OFF</string>
+    <string name="CHARGER_OFF">charger off</string>
+    <!-- ignition state 7-->
+    <string name="IGNITION_IDLE">ignition idle</string>
+    <string name="IGNITION_START">ignition start</string>
+    <string name="ENGINE_ON_TRIAL_PERIOD">TRIAL on</string>
+    <string name="ENGINE_ON">engine on</string>
+    <string name="ENGINE_OFF">engine off</string>
+    <string name="IGNITION_DISENGAGED">ignition disengaged</string>
+    <string name="IGNITION_DISABLED">ignition disabled</string>
+    <!-- Heater state 5-->
+    <string name="HEATER_INIT">heater init</string>
+    <string name="HEATER_ON">heater on</string>
+    <string name="HEATER_OFF">heater off</string>
+    <string name="HEATER_ENGAGED">heater Engaged</string>
+    <string name="HEATER_DISENGAGED">heater Disengaged</string>
+    <!-- contactor state 2-->
+    <string name="CONTACTOR_OPEN">OFF</string>
+    <string name="CONTACTOR_CLOSED">ON</string>
+    <!-- Balancer state 3-->
+    <string name="BALANCER_INIT">balancer init</string>
+    <string name="BALANCER_NOT_BALANCED">NOT balanced</string>
+    <string name="BALANCER_BALANCED">Balanced</string>
+    <!-- Sleep state 4-->
+    <string name="SLEEP_INIT">sleep init</string>
+    <string name="SLEEP_SYNC">sleep sync</string>
+    <string name="SLEEP_ON">sleep on</string>
+    <string name="SLEEP_OFF">sleep off</string>
+
+    <string name="menu_disconnect_devices">Disconnect Devices</string>
+    <string name="status_noLeAdv">LE Advertising is not available. Please pair with a device to be discoverable</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="title_section1">Batteries</string>
+    <string name="title_section2">Profile</string>
+    <string name="title_section3">Connect New Batteries</string>
+    <string name="title_section4">Buy Batteries</string>
+    <string name="title_section5">Support</string>
+    <string name="title_section6">Settings</string>
+    <string name="title_section7">Logout</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <!--<string name="hello_blank_fragment">Hello blank fragment</string>-->
+
+
+    <string name="pref_units_label">Temperature Units</string>
+
+
+    <string name="pref_units_label_metric">Metric</string>
+
+
+    <string name="pref_units_label_imperial">Imperial</string>
+
+
+    <string name="pref_units_key">units</string>
+
+
+    <string name="pref_units_metric">metric</string>
+
+
+    <string name="pref_units_imperial">imperial</string>
+
+    <string name="pref_mode_key">Mode</string>
+
+    <string name="pref_ble_adv_mode_key">BLE_ADV_MODE</string>
+</resources>

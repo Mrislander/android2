@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Select an image for you battery"
+        android:id="@+id/textView8"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_40sdp" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:columnCount="3"
+        android:id="@+id/gridview"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:src="@drawable/car193_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:src="@drawable/truck_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+
+            android:src="@drawable/motorbike_orange"
+            android:id="@+id/imageButton3"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:src="@drawable/car194_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:src="@drawable/van_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton6"
+            android:src="@drawable/cabriolet_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:src="@drawable/sports_bike_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton8"
+            android:src="@drawable/automobile_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton9"
+            android:src="@drawable/bus46_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton10"
+            android:src="@drawable/tractor_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton11"
+            android:src="@drawable/sportcar_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+        <ImageButton
+            android:id="@+id/imageButton12"
+            android:src="@drawable/city_car_orange"
+            android:layout_rowWeight="0.25"
+            android:layout_columnWeight="0.33" />
+
+
+
+
+    </GridLayout>
+
+</RelativeLayout>

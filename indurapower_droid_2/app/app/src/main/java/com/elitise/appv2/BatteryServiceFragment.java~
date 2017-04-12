@@ -1,0 +1,861 @@
+/*
+ * Copyright 2015 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.elitise.appv2;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothGattCharacteristic;
+
+import android.bluetooth.BluetoothGattService;
+import android.content.Context;
+import android.gesture.Gesture;
+import android.gesture.GestureOverlayView;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.os.Bundle;
+import android.os.ParcelUuid;
+
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+
+import android.view.ViewGroup;
+
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
+import java.util.UUID;
+
+
+public class BatteryServiceFragment extends ServiceFragment implements Observer {
+
+    private static final UUID ELT_BATT_MOBBAT_SERVICE_UUID = UUID
+       .fromString("AC55D02D-A7FE-4F64-A659-ABCB5C6D4099");
+      //.fromString("AC55D02D-A7FE-4F64-A659-ABCB5C6D4111");
+    private static final UUID ELT_BATT_MOBBAT_CHARACTERISTIC_UUID = UUID
+       .fromString("788C5B46-B899-473A-96C9-49B981739482");
+      //.fromString("AC55D02D-A7FE-4F64-A659-ABCB5C6D4111");
+    private static final byte[] CloseContactor = {-64, 104, 0, 4, 32, 77, 1, 0, 0, 0, -64};
+    private static final byte[] OpenContactor =  {-64, 104, 0, 4, 32, 77, 0, 0, 0, 0, -64};
+    private static final byte[] HeaterOn =       {-64, 102, 0, 4, 32, 64, 1, 0, 0, 0, -64};
+    private static final byte[] HeaterOff =      {-64, 102, 0, 4, 32, 64, 2, 0, 0, 0, -64};
+
+
+    private ServiceFragmentDelegate mDelegate;
+
+    private  BatteryData BD;
+
+//    private TabHost host;
+//    private TextView AppVer;
+//    private TextView ChargeState;
+//    private TextView IgnitionState;
+//    private TextView HeaterState;
+    private TextView ContactorState;
+//    private TextView BalancerState;
+//    private TextView SleepState;
+//    private TextView FC1V;
+//    private TextView FC2V;
+//    private TextView FC3V;
+//    private TextView FC4V;
+    private TextView BankV;
+    private TextView BankV2;
+    private TextView BusV;
+//    private TextView C_MONV;
+    private TextView C_MONA;
+//    private TextView I_CHGRA;
+//    private TextView BTV;
+//    private TextView CTV;
+//    private TextView BTDC;
+    private TextView CTDC;
+    private TextView SOC;
+    private TextView SOC2;
+//    private TextView SOH;
+//    private TextView SOF;
+    private TextView VOLT;
+
+//    private ToggleButton HeaterBtn;
+    private Switch ContactorBtn;
+//    private ToggleButton ConvertBtn;
+
+    private ChargeGauge chargeGauge;
+    private TempGauge tempGauge;
+
+    private  ImageView connectionView;
+    private GestureDetector gestureScanner;
+
+    private static  boolean ContactorOpen = false;
+    private static  boolean isCelsius = false;
+
+  // GATT
+  private BluetoothGattService mBatteryService;
+  private BluetoothGattCharacteristic mBatteryCharacteristic;
+  public BatteryServiceFragment() {
+    mBatteryCharacteristic =
+        new BluetoothGattCharacteristic(ELT_BATT_MOBBAT_CHARACTERISTIC_UUID,
+            BluetoothGattCharacteristic.PROPERTY_READ | BluetoothGattCharacteristic.PROPERTY_NOTIFY|BluetoothGattCharacteristic.PROPERTY_WRITE,
+            BluetoothGattCharacteristic.PERMISSION_READ|BluetoothGattCharacteristic.PERMISSION_WRITE);
+      mBatteryCharacteristic.addDescriptor(
+            Peripheral.getClientCharacteristicConfigurationDescriptor());
+      mBatteryService = new BluetoothGattService(ELT_BATT_MOBBAT_SERVICE_UUID,
+        BluetoothGattService.SERVICE_TYPE_PRIMARY);
+      mBatteryCharacteristic.setValue(CloseContactor);
+      mBatteryService.addCharacteristic(mBatteryCharacteristic);
+  }
+
+   //Lifecycle callbacks
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+
+        final View view = inflater.inflate(R.layout.fragment_battery, container, false);
+
+        BD = new BatteryData();
+        TextView mBname = (TextView) view.findViewById(R.id.BatteryName);
+        mBname.setText(getArguments().getString("mBname"));
+//        AppVer = (TextView) view.findViewById(R.id.AppVar);
+//        ChargeState = (TextView) view.findViewById(R.id.ChargerState);
+//        IgnitionState = (TextView) view.findViewById(R.id.IgnitionState);
+//        HeaterState = (TextView) view.findViewById(R.id.HeaterState);
+        ContactorState = (TextView) view.findViewById(R.id.batteryState);
+//        BalancerState = (TextView) view.findViewById(R.id.BalancerState);
+//        SleepState = (TextView) view.findViewById(R.id.SleepState);
+//        FC1V = (TextView) view.findViewById(R.id.FC1V);
+//        FC2V = (TextView) view.findViewById(R.id.FC2V);
+//        FC3V = (TextView) view.findViewById(R.id.FC3V);
+//        FC4V = (TextView) view.findViewById(R.id.FC4V);
+        BankV = (TextView) view.findViewById(R.id.batteryVolt);
+        BankV2 = (TextView) view.findViewById(R.id.mVlot);
+        BusV = (TextView) view.findViewById(R.id.aVolt);
+//        C_MONV = (TextView) view.findViewById(R.id.bStatus);
+        C_MONA = (TextView) view.findViewById(R.id.mCycle);
+//        I_CHGRA = (TextView) view.findViewById(R.id.I_CHRA);
+//        BTV = (TextView) view.findViewById(R.id.BTV);
+//        BTDC = (TextView) view.findViewById(R.id.BTDC);
+//        CTV = (TextView) view.findViewById(R.id.CTV);
+        CTDC = (TextView) view.findViewById(R.id.mTemp);
+        SOC = (TextView) view.findViewById(R.id.mStatus);
+        SOC2 = (TextView) view.findViewById(R.id.bStatus);
+//        SOF = (TextView) view.findViewById(R.id.SOF);
+//        SOH = (TextView) view.findViewById(R.id.SOH);
+        VOLT = (TextView) view.findViewById(R.id.volt);
+        connectionView = (ImageView) view.findViewById(R.id.connectionView);
+       //set logo green
+
+
+
+      chargeGauge = (ChargeGauge) view.findViewById(R.id.chargegauge);
+
+      chargeGauge.setMaxSpeed(100);
+      chargeGauge.setMajorTickStep(10);
+      chargeGauge.setMinorTicks(5);
+
+
+//      chargeGauge.setLabelConverter(new ChargeGauge.LabelConverter() {
+//          @Override
+//          public String getLabelFor(double progress, double maxProgress) {
+//              return String.valueOf((int) Math.round(progress));
+//          }
+//      });
+
+
+      chargeGauge.setUnitsText("0.0%");
+
+      tempGauge = (TempGauge) view.findViewById(R.id.tempgauge);
+      tempGauge.setMaxSpeed(100);
+      tempGauge.setMajorTickStep(10);
+      tempGauge.setMinorTicks(5);
+//
+//      tempGauge.setLabelConverter(new TempGauge.LabelConverter() {
+//          @Override
+//          public String getLabelFor(double progress, double maxProgress) {
+//              return String.valueOf((int) Math.round(progress));
+//          }
+//      });
+
+
+      tempGauge.setUnitsText("0.0°C");
+
+      //btn
+
+      ContactorBtn = (Switch) view.findViewById(R.id.Engage);
+      ContactorBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+              if (isChecked) {
+                  mBatteryCharacteristic.setValue(OpenContactor);
+              } else {
+                  mBatteryCharacteristic.setValue(CloseContactor);
+              }
+              mDelegate.sendNotificationToDevices(mBatteryCharacteristic);
+          }
+      });
+
+      return view;
+  }
+
+
+    @Override
+  public void onAttach(Activity activity)
+  {
+      super.onAttach(activity);
+      try{
+          mDelegate = (ServiceFragmentDelegate) activity;
+      }catch (ClassCastException e){
+          throw new ClassCastException(activity.toString());
+      }
+  }
+  @Override
+  public  void onDetach(){
+      super.onDetach();
+      mDelegate = null;
+  }
+  public BluetoothGattService getBluetoothGattService() {
+    return mBatteryService;
+  }
+
+  @Override
+  public ParcelUuid getServiceUUID() {
+    return new ParcelUuid(ELT_BATT_MOBBAT_SERVICE_UUID);
+  }
+
+
+
+    public static final byte SLIP_END = (byte) 0xC0;
+    public static final byte SLIP_ESC = (byte) 0xDB;
+    public static final byte SLIP_ESC_END = (byte)0xDC;
+    public static final byte SLIP_ESC_ESC = (byte)0xDD;
+    public static final int BUFF_LENGTH = 9;
+
+    public static  boolean m_receivingSlip = false;
+    public static  boolean m_haveCompletepackA = false;
+    public static  byte[] ByteArray = null;
+    public static  byte[] decodeByteArray = null;
+
+
+    private static final String TAG = Peripheral.class.getCanonicalName();
+
+  @Override
+  public int writeCharacteristic(BluetoothGattCharacteristic characteristic, int offset, byte[] value) {
+
+      int receivedLen = value.length;
+      ByteArray = new byte[receivedLen];
+      for(int idx = 0;idx<receivedLen;idx++){
+          if(m_receivingSlip)
+          {
+
+              ByteArray[idx] = value[idx];
+              if(value[idx]==SLIP_END)
+              {
+                  m_receivingSlip=false;
+                  m_haveCompletepackA=true;
+              }
+              value[idx]=0;
+
+          }
+          else if(value[idx]==SLIP_END)
+          {
+              ByteArray[idx] = value[idx];
+              m_receivingSlip = true;
+              value[idx]=0;
+              if((idx+1)<receivedLen)
+                  if(value[idx+1]==SLIP_END)
+                      idx++;
+          }
+          if(m_haveCompletepackA)
+          {
+
+              decodeByteArray = decode(ByteArray);
+              Log.v(TAG, "AfterDecode: "+ Arrays.toString(decodeByteArray));
+              parseSentence(decodeByteArray);
+              m_haveCompletepackA = false;
+              ByteArray = null;
+          }
+      }
+      return 0;
+  }
+
+    public byte[] decode(byte[] ByteArray)
+    {
+        int idx;
+        byte c;
+        boolean escaped = false;
+        byte[] decodeArray  = new byte[BUFF_LENGTH];
+        boolean beginingFound = false;
+        int dest_pos = 0;
+        for(idx = 0;idx < ByteArray.length;idx++){
+            c = ByteArray[idx];
+            if(c==SLIP_END){
+              if(dest_pos == 0){
+                  beginingFound = true;
+
+                  continue;
+              }
+              else{
+
+                  return decodeArray ;
+              }
+
+
+            }
+            else if(escaped){
+                if(c == SLIP_ESC_END)
+                    c=SLIP_END;
+                else if(c == SLIP_ESC_ESC)
+                    c=SLIP_ESC;
+                else{
+
+
+                }
+                escaped = false;
+            }
+            else if(c== SLIP_ESC)
+            {
+                escaped = true;
+                continue;
+            }
+
+            if(beginingFound&&(dest_pos<BUFF_LENGTH)){
+                decodeArray[dest_pos++] = c;
+            }
+        }
+
+        return decodeArray;
+    }
+
+    @Override
+    public void update(final boolean connection) {
+        if(connection == true){
+            Log.v(TAG, "Obs: Connect");
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    connectionView.setVisibility(View.VISIBLE);
+                    //connectionView.setColorFilter(new LightingColorFilter(Color.WHITE, Color.WHITE));
+
+                }
+            });
+
+
+        }
+        else {
+            Log.v(TAG,"Obs: Disonnect");
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    connectionView.setVisibility(View.INVISIBLE);
+//                    FC1V.setText("N/A");
+//                    FC2V.setText("N/A");
+//                    FC3V.setText("N/A");
+//                    FC4V.setText("N/A");
+                    BankV.setText("0.0");
+                    BankV2.setText("0.0");
+                    BusV.setText("0.0");
+                    C_MONA.setText("0.0");
+//                    if (!ContactorOpen) {
+//                        C_MONA.setText("N/A");
+//                    } else {
+//                        C_MONA.setText("0.000");
+//                    }
+//                    I_CHGRA.setText("N/A");
+//                    BTV.setText("N/A");
+//                    BTDC.setText("N/A");
+//                    CTV.setText("N/A");
+                    CTDC.setText("0.0");
+                    SOC.setText("0.0");
+                    SOC2.setText("0.0");
+//                    SOH.setText("N/A");
+//                    SOF.setText("N/A");
+//                    AppVer.setText("N/A");
+
+
+                    tempGauge.setUnitsText("0.0°C");
+                    tempGauge.setSpeed(50,true);
+
+                    VOLT.setText("0.0V");
+
+                    chargeGauge.setUnitsText("0.0%");
+
+                    chargeGauge.setSpeed(50,true);
+
+//                    ChargeState.setText("N/A");
+//                    IgnitionState.setText("N/A");
+//                    HeaterState.setText("N/A");
+                    ContactorState.setText("OFF");
+//                    BalancerState.setText("N/A");
+//                    SleepState.setText("N/A");
+
+                }
+            });
+
+        }
+    }
+
+
+    public enum CMOMANDSTYPE{
+        HOST_COMMANDS(0), NVMEM_COMMANDS(32), SERVICE_COMMANDS(64), DEBUG_COMMANDS(96), LAST_COMMAND_CLASS(128);
+        private final int id;
+        CMOMANDSTYPE(int id) {this.id = id;}
+        public int getValue() {return id;}
+    }
+
+
+    public void parseSentence(byte[] data){
+
+        int commandClass;
+        int commandID;
+        byte[] parameter = null;
+        int checksum;
+        int dataType;
+        int index;
+
+        commandClass = data[0] & 0xE0;
+        commandID = data[0] & 0x1F;
+        parameter = combineFourBytes(data[5],data[6],data[7],data[8]);
+        checksum = data[4];
+        dataType = (data[3] & 0xE0) >> 5;
+        index = (data[3] & 0x1F);
+        Log.v(TAG, "parsing: "+ commandClass+" CID:"+commandID+ "  Parm: "+ parameter + " index : "+index + " dataType :" + dataType);
+        if(commandClass == CMOMANDSTYPE.HOST_COMMANDS.getValue() ){
+            ParseHostCommand(commandID,parameter,dataType,index);
+        }
+        else if (commandClass ==CMOMANDSTYPE.DEBUG_COMMANDS.getValue()){
+            ParseDebugCommand(commandID,parameter,dataType,index);
+        }
+        else {
+            Log.v(TAG,"Wrong Type Command");
+        }
+
+
+   }
+   public static byte[] combineFourBytes(byte b1,byte b2,byte b3,byte b4){
+       byte[] temp = new byte[4];
+       temp[0]=b1;
+       temp[1]=b2;
+       temp[2]=b3;
+       temp[3]=b4;
+       return temp;
+   }
+
+
+    public enum HOST_CMD{
+            MIN_HOST_CMD,
+            GET_I_CHARGE,
+            SET_I_CHARGE,
+            GET_C_MON,
+            SET_C_MON,
+            GET_BUS_MON,
+            SET_BUS_MON,
+            GET_BANK_V,
+            SET_BANK_V,
+            GET_FUEL_CELL_V,
+            SET_FUEL_CELL_V,
+            GET_BODY_TEMPERATURE,
+            SET_BODY_TEMPERATURE,
+            GET_CELL_TEMPERATURE,
+            SET_CELL_TEMPERATURE,
+            SET_SOC_VAL,
+            GET_SOC_VAL,
+            SET_SOH_VAL,
+            GET_SOH_VAL,
+            SET_SOF_VAL,
+            GET_SOF_VAL,
+            SET_APP_VER,
+            SET_BOOT_VER,
+            SET_BAUD_RATE,
+            MAX_HOST_CMD
+    }
+
+
+
+
+    public void ParseHostCommand(int commandID,byte[] parm,int dataType,int index)
+    {
+        float parmFloat = ByteBuffer.wrap(parm).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+
+        switch (HOST_CMD.values()[commandID]){
+          case GET_I_CHARGE:
+              break;
+          case SET_I_CHARGE:
+
+              BD.setM_I_CHGR(parmFloat*(float)3.333);
+              break;
+          case GET_C_MON:
+              break;
+          case SET_C_MON:
+              final float chargingGain;
+              chargingGain = (parmFloat>(float)1.2218?(float)104:(float)29.369);
+              BD.setM_C_MON(parmFloat);
+              BD.setM_C_MON_amps(((float)1.2218-BD.getM_C_MON())/((float)0.0004*chargingGain));
+              getActivity().runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      C_MONA.setText(String.format("%.1f",BD.getM_C_MON_amps()));
+                  }
+              });
+              break;
+          case GET_BUS_MON:
+              break;
+          case SET_BUS_MON:
+              BD.setM_BUS_MON(parmFloat);
+              getActivity().runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      BusV.setText(String.format("%.1f",BD.getM_BUS_MON()));
+                  }
+              });
+              break;
+          case GET_BANK_V:
+              break;
+          case SET_BANK_V:
+              BD.setM_batteryVoltage(parmFloat);
+              getActivity().runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      BankV.setText(String.format("%.1f",BD.getM_batteryVoltage()));
+                      BankV2.setText(String.format("%.1f",BD.getM_batteryVoltage()));
+                      VOLT.setText(String.format("%.1f",BD.getM_batteryVoltage())+"V");
+                  }
+              });
+              break;
+          case GET_FUEL_CELL_V:
+              break;
+          case SET_FUEL_CELL_V:
+              BD.setM_FUEL_CELL_V(parmFloat, index);
+              break;
+          case GET_BODY_TEMPERATURE:
+              break;
+          case SET_BODY_TEMPERATURE:
+              BD.setM_bodyTemperature(parmFloat);
+              BD.setM_bodyTemperatureC(BD.getTemperatureFromVoltage(BD.getM_bodyTemperature()));
+              break;
+          case GET_CELL_TEMPERATURE:
+              break;
+
+            case SET_CELL_TEMPERATURE:
+              BD.setM_cellTemperature(parmFloat);
+              BD.setM_cellTemperatureC(BD.getTemperatureFromVoltage(BD.getM_cellTemperature()));
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CTDC.setText(String.format("%.1f",BD.getM_cellTemperatureC()));
+                        tempGauge.setUnitsText(String.format("%.2f",  BD.getM_cellTemperatureC()) + "°C");
+                        float temp = ( BD.getM_cellTemperatureC() + 40) / 165*100;
+                        tempGauge.setSpeed(temp,true);
+                    }
+                });
+              break;
+          case GET_SOC_VAL:
+              break;
+          case SET_SOC_VAL:
+              BD.setM_SOC(parmFloat);
+              getActivity().runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      SOC.setText(String.format("%.1f", BD.getM_SOC()));
+                      SOC2.setText(String.format("%.1f", BD.getM_SOC()));
+                      chargeGauge.setUnitsText(String.format("%.2f",BD.getM_SOC()*10)+"%");
+                      chargeGauge.setSpeed((BD.getM_SOC()*10),true);
+                  }
+              });
+              break;
+          case GET_SOH_VAL:
+              break;
+          case SET_SOH_VAL:
+              BD.setM_SOH(parmFloat);
+              break;
+          case GET_SOF_VAL:
+              break;
+          case SET_SOF_VAL:
+              BD.setM_SOF(parmFloat);
+              break;
+          case SET_APP_VER:
+
+              int major = parm[0];
+              int minor = parm[1];
+              int build = ((parm[2] << 8) | parm[3]);
+              String app_ver = Integer.toString(major) + "." + Integer.toString(minor)+"."+Integer.toString(build);
+              BD.setAppVer(app_ver);
+              break;
+            default:
+
+                break;
+
+      }
+
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+////                FC1V.setText(String.format("%.3f",BD.getM_FUEL_CELL_V(0)));
+////                FC2V.setText(String.format("%.3f",BD.getM_FUEL_CELL_V(1)));
+////                FC3V.setText(String.format("%.3f",BD.getM_FUEL_CELL_V(2)));
+////                FC4V.setText(String.format("%.3f",BD.getM_FUEL_CELL_V(3)));
+//                BankV.setText(String.format("%.1f",BD.getM_batteryVoltage()));
+//                BankV2.setText(String.format("%.1f",BD.getM_batteryVoltage()));
+//                BusV.setText(String.format("%.1f",BD.getM_BUS_MON()));
+//                C_MONA.setText(String.format("%.1f",BD.getM_C_MON_amps()));
+////                if(!ContactorOpen){
+////                    C_MONA.setText(String.format("%.3f",BD.getM_C_MON_amps()));
+////                }
+////                else{
+////                    C_MONA.setText("0.000");
+////                }
+////                I_CHGRA.setText(String.format("%.3f",BD.getM_I_CHGR()));
+////                BTV.setText(String.format("%.3f",BD.getM_bodyTemperature()));
+////                BTDC.setText(String.format("%.3f",BD.getM_bodyTemperatureC()));
+////                CTV.setText(String.format("%.3f",BD.getM_cellTemperature()));
+//                CTDC.setText(String.format("%.1f",BD.getM_cellTemperatureC()));
+//                SOC.setText(String.format("%.1f", BD.getM_SOC()));
+//                SOC2.setText(String.format("%.1f", BD.getM_SOC()));
+////                SOH.setText(String.format("%.3f", BD.getM_SOH()));
+////                SOF.setText(String.format("%.3f", BD.getM_SOF()));
+////                AppVer.setText(BD.getAppVer());
+//
+//
+//                tempGauge.setUnitsText(String.format("%.1f",  BD.getM_cellTemperatureC()) + "°C");
+//                float temp = ( BD.getM_cellTemperatureC() + 40) / 165*100;
+//                tempGauge.setSpeed(temp,true);
+//
+//                VOLT.setText(String.format("%.1f",BD.getM_batteryVoltage())+"V");
+//
+//                chargeGauge.setUnitsText(String.format("%.1f",BD.getM_SOC()*10)+"%");
+//
+//                chargeGauge.setSpeed((BD.getM_SOC()*10),true);
+//            }
+//        });
+    }
+    public enum DEBUG_CMD{
+        MIN_DEBUG_CMD,
+        GET_CHARGE_STATE,
+        SET_CHARGE_STATE,
+        GET_IGNITION_STATE,
+        SET_IGNITION_STATE,
+        GET_HEATER_STATE,
+        SET_HEATER_STATE,
+        GET_CONTACTOR_STATE,
+        SET_CONTACTOR_STATE,
+        GET_SLEEP_STATE,
+        SET_SLEEP_STATE,
+        GET_BALANCER_STATE,
+        SET_BALANCER_STATE,
+        MAX_DEBUG_CMD
+    }
+    public static final int ChargeStateCnt = 5;
+    public static final int IgnitionStateCnt = 7;
+    public static final int HeaterStateCnt = 5;
+    public static final int ContactorStateCnt = 2;
+    public static final int BalancerStateCnt = 3;
+    public static final int SleepStateCnt = 4;
+
+    public void ParseDebugCommand(int commandID,byte[] parm,int dataType,int index)
+    {
+        int parmInt = ByteBuffer.wrap(parm).order(ByteOrder.LITTLE_ENDIAN).getInt();
+        switch (DEBUG_CMD.values()[commandID]){
+            case GET_CHARGE_STATE:
+                break;
+
+            case SET_CHARGE_STATE:
+
+                if(parmInt<ChargeStateCnt && parmInt>=0){
+
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_chargerState(getString(R.string.CHARGER_INIT));
+                            break;
+                        case 1:
+                            BD.setM_chargerState(getString(R.string.SYNC_CHARGER_ON));
+                            break;
+                        case 2:
+                            BD.setM_chargerState(getString(R.string.CHARGER_ON));
+                            break;
+                        case 3:
+                            BD.setM_chargerState(getString(R.string.SYNC_CHARGER_OFF));
+                            break;
+                        case 4:
+                            BD.setM_chargerState(getString(R.string.CHARGER_OFF));
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                break;
+
+            case GET_IGNITION_STATE:
+                break;
+            case SET_IGNITION_STATE:
+
+                if(parmInt<IgnitionStateCnt && parmInt>=0){
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_ignitionState(getString(R.string.IGNITION_IDLE));
+                            break;
+                        case 1:
+                            BD.setM_ignitionState(getString(R.string.IGNITION_START));
+                            break;
+                        case 2:
+                            BD.setM_ignitionState(getString(R.string.ENGINE_ON_TRIAL_PERIOD));
+                            break;
+                        case 3:
+                            BD.setM_ignitionState(getString(R.string.ENGINE_ON));
+                            break;
+                        case 4:
+                            BD.setM_ignitionState(getString(R.string.ENGINE_OFF));
+                            break;
+                        case 5:
+                            BD.setM_ignitionState(getString(R.string.IGNITION_DISENGAGED));
+                            break;
+                        case 6:
+                            BD.setM_ignitionState(getString(R.string.IGNITION_DISABLED));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            case GET_HEATER_STATE:
+                break;
+            case SET_HEATER_STATE:
+                if(parmInt<HeaterStateCnt && parmInt>=0){
+
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_heaterState(getString(R.string.HEATER_INIT));
+                            break;
+                        case 1:
+                            BD.setM_heaterState(getString(R.string.HEATER_ON));
+                            break;
+                        case 2:
+                            BD.setM_heaterState(getString(R.string.HEATER_OFF));
+                            break;
+                        case 3:
+                            BD.setM_heaterState(getString(R.string.HEATER_ENGAGED));
+                            break;
+                        case 4:
+                            BD.setM_heaterState(getString(R.string.HEATER_DISENGAGED));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            case GET_CONTACTOR_STATE:
+                break;
+            case SET_CONTACTOR_STATE:
+                if(parmInt<ContactorStateCnt && parmInt>=0) {
+
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_contactorState(getString(R.string.CONTACTOR_OPEN));
+                            ContactorOpen = true;
+                            break;
+                        case 1:
+                            BD.setM_contactorState(getString(R.string.CONTACTOR_CLOSED));
+                            ContactorOpen = false;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ContactorState.setText(BD.getM_contactorState());
+                        }
+                    });
+                }
+                break;
+            case GET_SLEEP_STATE:
+                break;
+            case SET_SLEEP_STATE:
+                if(parmInt<SleepStateCnt && parmInt>=0) {
+
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_sleepState(getString(R.string.SLEEP_INIT));
+                            break;
+                        case 1:
+                            BD.setM_sleepState(getString(R.string.SLEEP_SYNC));
+                            break;
+                        case 2:
+                            BD.setM_sleepState(getString(R.string.SLEEP_ON));
+                            break;
+                        case 3:
+                            BD.setM_sleepState(getString(R.string.SLEEP_OFF));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            case GET_BALANCER_STATE:
+                break;
+            case SET_BALANCER_STATE:
+                if(parmInt<BalancerStateCnt && parmInt>=0) {
+
+                    switch (parmInt){
+                        case 0:
+                            BD.setM_balancerState(getString(R.string.BALANCER_INIT));
+                            break;
+                        case 1:
+                            BD.setM_balancerState(getString(R.string.BALANCER_NOT_BALANCED));
+                            break;
+                        case 2:
+                            BD.setM_balancerState(getString(R.string.BALANCER_BALANCED));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            default:
+                Log.v(TAG,"Wrong  CommandID");
+                break;
+
+        }
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+////                ChargeState.setText(BD.getM_chargerState());
+////                IgnitionState.setText(BD.getM_ignitionState());
+////                HeaterState.setText(BD.getM_heaterState());
+//                ContactorState.setText(BD.getM_contactorState());
+////                BalancerState.setText(BD.getM_balancerState());
+////                SleepState.setText(BD.getM_sleepState());
+////
+////
+//            }
+//        });
+
+
+    }
+
+
+
+}

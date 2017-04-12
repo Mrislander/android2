@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/header"
+        android:layout_weight="0.05">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/battery"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/temp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/mTempImage" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:id="@+id/linearLayout"
+        android:layout_weight="0.25">
+
+
+        <com.elitise.appv2.ChargeGauge
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/chargegauge"
+            android:layout_weight="0.33"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_10sdp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.33">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/BatteryName"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.3"
+                android:src="@drawable/elitise"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:text="N/A"
+                android:gravity="center"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="#ffffff"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="0dp"
+                android:id="@+id/connectionView"
+                android:src="@drawable/ledimage"
+                android:layout_above="@+id/volt"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.2"
+                android:visibility="invisible"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal" />
+
+
+            <TextView
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0.0V"
+                android:id="@+id/volt"
+                android:textColor="#ffffff"
+                android:background="@drawable/battery_control_page_voltagebg"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.5"
+                android:layout_gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+
+        <com.elitise.appv2.TempGauge
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/tempgauge"
+            android:layout_weight="0.33"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/_10sdp" />
+
+
+    </LinearLayout>
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:id="@+id/scrollView"-->
+    <!--android:layout_marginLeft="@dimen/_10sdp"-->
+    <!--android:layout_marginRight="@dimen/_10sdp"-->
+    <!--android:layout_marginTop="@dimen/_20sdp"-->
+    <!--android:layout_weight="0.7">-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/normalMode">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Low Power Mode"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff=""
+            android:textOn=""
+            android:id="@+id/Engage"
+            android:checked="false"
+            android:splitTrack="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            app:switchMinWidth="@dimen/_40sdp"
+            android:theme="@style/MySwitch" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/Engage"
+            android:id="@+id/View1"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="One Last Start Mode"
+            android:id="@+id/lastStart"
+            android:layout_below="@+id/View1"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp" />
+
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff=""
+            android:textOn=""
+            android:id="@+id/oneLastMode"
+            android:checked="false"
+            android:splitTrack="false"
+            android:layout_below="@+id/View1"
+            android:layout_alignParentEnd="true"
+            app:switchMinWidth="@dimen/_40sdp"
+            android:theme="@style/MySwitch" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/oneLastMode"
+            android:id="@+id/View10"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Power OFF Mode"
+            android:id="@+id/batteryS"
+            android:layout_below="@+id/View10"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/batteryState"
+            android:layout_below="@id/View10"
+            android:layout_alignParentEnd="true"
+            app:switchMinWidth="@dimen/_40sdp"
+            android:theme="@style/MySwitch" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:id="@+id/View0"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_below="@+id/batteryState" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Heater  On"
+            android:id="@+id/textView13"
+            android:layout_below="@id/View0"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/heaterBtn"
+            android:layout_below="@id/View0"
+            android:layout_alignParentEnd="true"
+            app:switchMinWidth="@dimen/_40sdp"
+            android:theme="@style/MySwitch" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:id="@+id/View"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_below="@+id/heaterBtn" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Battery Internal  Voltage (V)"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/View"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/batteryVolt"
+            android:layout_alignTop="@+id/View"
+            android:layout_alignEnd="@+id/batteryState"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:background="@drawable/roundrect"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/batteryVolt"
+            android:id="@+id/View3"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Battery Terminal  Voltage (V)"
+            android:id="@+id/textView4"
+            android:layout_alignTop="@+id/View3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/aVolt"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_alignTop="@+id/View3"
+            android:layout_alignStart="@+id/batteryVolt"
+            android:layout_marginTop="@dimen/_3sdp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/aVolt"
+            android:id="@+id/View4"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Battery Capacity (AH)"
+            android:id="@+id/textView5"
+            android:layout_alignTop="@+id/View4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/bStatus"
+            android:layout_alignTop="@+id/View4"
+            android:layout_alignEnd="@+id/aVolt"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:background="@drawable/roundrect"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Battery Module 1(Master)"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/textView5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Module Voltage (V)"
+            android:id="@+id/textView7"
+            android:layout_alignTop="@+id/mVlot"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/mVlot"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_5sdp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/mVlot"
+            android:id="@+id/View5"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Battery Current (A)"
+            android:id="@+id/textView8"
+            android:layout_below="@+id/View5"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/mCycle"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_below="@+id/View5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/mCycle"
+            android:id="@+id/View6"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Temperature (°F)"
+            android:id="@+id/tempLabel"
+            android:layout_below="@+id/View6"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/mTemp"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_below="@+id/View6"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="#cfcfcf"
+            android:layout_below="@+id/mTemp"
+            android:id="@+id/View7"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Module Capacity (AH)"
+            android:id="@+id/textView10"
+            android:layout_below="@+id/View7"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0.0"
+            android:id="@+id/mStatus"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_below="@+id/View7"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_3sdp" />
+
+
+    </RelativeLayout>
+    <!--</ScrollView>-->
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/scrollView"-->
+        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+        <!--android:layout_marginRight="@dimen/_10sdp"-->
+        <!--android:layout_marginTop="66dp"-->
+        <!--android:visibility="visible">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="visible"-->
+            <!--android:id="@+id/statuslayout"-->
+            <!--android:useDefaultMargins="false">-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Application Version"-->
+                <!--android:id="@+id/textViewa"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/AppVar"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/textViewa"-->
+                <!--android:id="@+id/Viewa"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Power OFF Mode"-->
+                <!--android:id="@+id/batteryS"-->
+                <!--android:layout_below="@+id/Viewa"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:textColor="#ffffff" />-->
+
+            <!--<Switch-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/batteryState"-->
+                <!--android:switchMinWidth="@dimen/_40sdp"-->
+                <!--android:theme="@style/MaterialBaseTheme.Light"-->
+                <!--android:checked="false"-->
+                <!--android:splitTrack="false"-->
+                <!--android:layout_below="@id/Viewa"-->
+                <!--android:layout_alignParentEnd="true" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/batteryState"-->
+                <!--android:id="@+id/Viewd1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Power OFF Mode Status"-->
+                <!--android:id="@+id/textView13"-->
+                <!--android:layout_below="@+id/Viewd1"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:textColor="#ffffff" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="OFF"-->
+                <!--android:id="@+id/mSafeMode"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_below="@id/Viewd1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/mSafeMode"-->
+                <!--android:id="@+id/Viewe1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Contactor Open"-->
+                <!--android:id="@+id/textView"-->
+                <!--android:layout_below="@+id/Viewd"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:textColor="#ffffff" />-->
+
+            <!--<Switch-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textOff=""-->
+                <!--android:textOn=""-->
+                <!--android:switchMinWidth="@dimen/_40sdp"-->
+                <!--android:id="@+id/Engage"-->
+                <!--android:checked="false"-->
+                <!--android:splitTrack="false"-->
+                <!--android:theme="@style/MaterialBaseTheme.Light"-->
+                <!--android:layout_below="@+id/Viewd"-->
+                <!--android:layout_alignParentEnd="true" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/Engage"-->
+                <!--android:id="@+id/Viewc1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Charger State"-->
+                <!--android:id="@+id/textViewb"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:visibility="visible"-->
+                <!--android:layout_below="@+id/Viewe1"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/ChargerState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:visibility="visible"-->
+                <!--android:layout_below="@+id/Viewe1"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/ChargerState"-->
+                <!--android:id="@+id/Viewb"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Ignition State"-->
+                <!--android:id="@+id/textView51"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewb"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/IgnitionState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewb"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/IgnitionState"-->
+                <!--android:id="@+id/Viewc"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Heater State"-->
+                <!--android:id="@+id/textViewc"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@id/Viewc"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/HeaterState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewc"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/HeaterState"-->
+                <!--android:id="@+id/Viewd"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Contactor State"-->
+                <!--android:id="@+id/textView9"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:visibility="visible"-->
+                <!--android:layout_below="@+id/Viewc1"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/ContactorState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"-->
+                <!--android:visibility="visible"-->
+                <!--android:layout_below="@+id/Viewc1"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/ContactorState"-->
+                <!--android:id="@+id/Viewe"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Balancer State"-->
+                <!--android:id="@+id/textView11"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewe"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/BalancerState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewe"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"-->
+                <!--android:visibility="visible" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/BalancerState"-->
+                <!--android:id="@+id/Viewf"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:visibility="visible" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Sleep State"-->
+                <!--android:id="@+id/textViewd"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_alignTop="@+id/Viewf"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/SleepState"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_below="@+id/Viewf"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/SleepState"-->
+                <!--android:id="@+id/Viewg"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Fuel Cell 1 Voltage"-->
+                <!--android:id="@+id/textView15"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewg"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/FC1V"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewg"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect" />-->
+
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/FC1V"-->
+                <!--android:id="@+id/Viewh"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Fuel Cell 2 Voltage"-->
+                <!--android:id="@+id/textView17"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewh"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/FC2V"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewh"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/FC2V"-->
+                <!--android:id="@+id/Viewi"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Fuel Cell 3 Voltage"-->
+                <!--android:id="@+id/textView19"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewi"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/FC3V"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewi"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/FC3V"-->
+                <!--android:id="@+id/Viewj"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Fuel Cell 4 Voltage"-->
+                <!--android:id="@+id/textView21"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewj"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/FC4V"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewj"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/FC4V"-->
+                <!--android:id="@+id/Viewk"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Bank Voltage"-->
+                <!--android:id="@+id/textView22"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewk"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/BankV"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewk"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/BankV"-->
+                <!--android:id="@+id/Viewl"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Bus Voltage"-->
+                <!--android:id="@+id/textView23"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewl"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/BusV"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewl"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/BusV"-->
+                <!--android:id="@+id/Viewm"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="C_MON(Volts)"-->
+                <!--android:id="@+id/textView24"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewm"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/C_MONV"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewm"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/C_MONV"-->
+                <!--android:id="@+id/Viewn"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="C_MON(Amps)"-->
+                <!--android:id="@+id/textView25"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_alignTop="@+id/Viewn"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/C_MONA"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewn"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/C_MONA"-->
+                <!--android:id="@+id/Viewo"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="I_CHGR(Amps)"-->
+                <!--android:id="@+id/textView26"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewo"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/I_CHRA"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewo"-->
+                <!--android:layout_alignEnd="@+id/C_MONA"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/I_CHRA"-->
+                <!--android:id="@+id/Viewp"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Body Temperature Volts"-->
+                <!--android:id="@+id/textView27"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewp"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/BTV"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewp"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/BTV"-->
+                <!--android:id="@+id/Viewq"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Cell Temperature Volts"-->
+                <!--android:id="@+id/textView28"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewq"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/CTV"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewq"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/CTV"-->
+                <!--android:id="@+id/Viewx"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Body Temperature Deg C"-->
+                <!--android:id="@+id/textView30"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewx"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/BTDC"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewx"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/BTDC"-->
+                <!--android:id="@+id/Viewy"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="Cell Temerature Deg C"-->
+                <!--android:id="@+id/textView29"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewy"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/CTDC"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewy"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/CTDC"-->
+                <!--android:id="@+id/Viewz"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="SOC"-->
+                <!--android:id="@+id/textView31"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewz"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/SOC"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewz"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"/>-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/SOC"-->
+                <!--android:id="@+id/Viewa1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="SOH"-->
+                <!--android:id="@+id/textView32"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewa1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:layout_alignParentStart="true"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/SOH"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewa1"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center" />-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_1sdp"-->
+                <!--android:background="#cfcfcf"-->
+                <!--android:layout_below="@+id/SOH"-->
+                <!--android:id="@+id/Viewb1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="SOF"-->
+                <!--android:id="@+id/textView33"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewb1"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="@dimen/_40sdp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                <!--android:text="N/A"-->
+                <!--android:id="@+id/SOF"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:layout_below="@+id/Viewb1"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_marginTop="@dimen/_1sdp"-->
+                <!--android:background="@drawable/roundrect"-->
+                <!--android:gravity="center"/>-->
+
+
+        <!--</RelativeLayout>-->
+    <!--</ScrollView>-->
+</LinearLayout>

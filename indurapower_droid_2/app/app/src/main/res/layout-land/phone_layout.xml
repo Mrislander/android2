@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="8"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="4">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/battery"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView4" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:src="@drawable/info_blue"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/chargerAnimation" />
+
+            <com.elitise.appv2.ChargerGaugeView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@id/chargegauge2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_height="@dimen/_140sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:weightSum="10"
+            android:orientation="vertical">
+            <TextView
+                android:text="NAME"
+                android:textSize="@dimen/_13sdp"
+                android:maxLines="4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/BatteryName2"
+                android:layout_weight="3"
+                android:textAlignment="center"
+                android:gravity="center"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4">
+
+                <com.elitise.appv2.ConnectLedView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:id="@+id/connectionView2"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0.0V"
+                android:id="@+id/volt2"
+                android:textColor="#ffffff"
+                android:background="@drawable/battery_control_page_voltagebg"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="4">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/temp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView5" />
+
+            <com.elitise.appv2.TempGaugeView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tempgauge2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

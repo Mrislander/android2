@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@drawable/car_bg">
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:id="@+id/HEADER"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/logo"
+            android:id="@+id/imageView"
+            android:contentDescription="header"
+            android:layout_margin="20dp" />
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:background="#cfcfcf"-->
+            <!--android:layout_below="@+id/HEADER"-->
+            <!--android:id="@+id/View1" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Firmware Update Tool V.0.1.11"
+            android:id="@+id/textView2"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
+
+
+    <GridLayout
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="5"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_below="@+id/HEADER">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Batteries to Update: "
+            android:id="@+id/textView10"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="N/A"
+            android:id="@+id/nodes"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Current FW Version: "
+        android:id="@+id/textView3"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="N/A"
+        android:id="@+id/currentVersion"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="New FW Version:"
+        android:id="@+id/textView5"
+        android:textColor="#ffffff"
+        android:layout_row="2"
+        android:layout_column="0" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="n/a"
+        android:id="@+id/ImageVersion"
+        android:textColor="#ffffff"
+        android:layout_row="2"
+        android:layout_column="1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="New FW Size:"
+        android:id="@+id/textView11"
+        android:textColor="#ffffff"
+        android:layout_row="3"
+        android:layout_column="0" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="n/a"
+        android:id="@+id/ImageSize"
+        android:textColor="#ffffff"
+        android:layout_row="3"
+        android:layout_column="1"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="New FW Build Date:"
+        android:id="@+id/buildDate"
+        android:textColor="#ffffff"
+        android:layout_row="4"
+        android:layout_column="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="n/a"
+        android:textColor="#ffffff"
+        android:id="@+id/lastUpdateTime"
+        android:layout_row="4"
+        android:layout_column="1" />
+
+
+
+    </GridLayout>
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/LEDs"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="upload"
+            android:id="@+id/uploadBtn"
+            android:layout_margin="10dp"
+            android:background="@drawable/btnbg"
+            android:textColor="#ffffff" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="update"
+            android:visibility="gone"
+            android:id="@+id/updateBtn"
+            android:layout_margin="10dp"
+            android:background="@drawable/btnbg"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="CANCEL"
+            android:visibility="gone"
+            android:id="@+id/cancelBtn"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/btnbg"
+            android:textColor="#ffffff" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="BlinkLED"
+            android:visibility="visible"
+            android:id="@+id/blinkBtn"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/btnbg"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="RESET"
+            android:visibility="visible"
+            android:id="@+id/resetBtn"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/btnbg"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <com.elitise.firmwareupdate.ProgressBarView
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:id="@+id/progressBar"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/info"
+       />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/scrollView"
+        android:fillViewport="false"
+        android:background="#55d3d3d3"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:id="@+id/textView"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textColor="#00ff08" />
+    </ScrollView>
+
+    <TextView
+        android:text="0%"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/LEDs"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/progressNum"
+        android:textColor="#00ff08"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="normal|bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/LEDs"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="TX"
+            android:id="@+id/TX"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginStart="20dp"
+            android:textColor="#00ff08" />
+
+        <com.elitise.firmwareupdate.ConnectLEDView
+            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:id="@+id/TXLED"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_gravity="center" />
+
+        <com.elitise.firmwareupdate.ConnectLEDView
+            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:id="@+id/RXLED"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="@dimen/_5sdp"
+            android:text="RX"
+            android:id="@+id/RX"
+
+            android:textColor="#ffa500" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

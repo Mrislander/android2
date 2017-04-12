@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/car_bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp" />
+    <com.elitise.appv2.Logo_pathsView
+        android:id="@+id/logoBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+    </RelativeLayout>
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:weightSum="10"
+        android:id="@+id/topGaugeLayout">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:id="@+id/header">
+
+
+            <ImageView
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:src="@drawable/battery"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:src="@drawable/info_blue"
+                android:id="@+id/chargerAnimation"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <com.elitise.appv2.ChargerGaugeView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/chargegauge"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="0dp"
+                android:id="@+id/BatteryName"
+                android:layout_weight="3"
+                android:src="@drawable/elitise"
+                android:text="N/A"
+                android:gravity="top|center"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="#ffffff" />
+
+            <com.elitise.appv2.ConnectLedView
+                android:layout_width="@dimen/_50sdp"
+                android:id="@+id/connectionView"
+                android:layout_height="0dp"
+                android:layout_above="@+id/volt"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="3"
+                android:visibility="visible"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+            <TextView
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="0.0V"
+                android:id="@+id/volt"
+                android:textColor="#ffffff"
+                android:background="@drawable/battery_control_page_voltagebg"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="4"
+                android:layout_gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:id="@+id/header2">
+
+            <ImageView
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:src="@drawable/temp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/mTempImage" />
+
+            <com.elitise.appv2.TempGaugeView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tempgauge"
+                android:layout_weight="4"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_5sdp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Device Model"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+        <TextView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="N/A"
+        android:id="@+id/deviceModel"
+        android:background="@drawable/roundrect"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/deviceModel"
+        android:id="@+id/View3"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Battery Capacity (mAh)"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/View3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+
+
+
+
+    <TextView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="N/A"
+        android:id="@+id/batteryCap"
+        android:background="@drawable/roundrect"
+        android:gravity="center"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_below="@+id/View3"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/batteryCap"
+        android:id="@+id/View4"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="N/A"
+        android:id="@+id/batteryLevel"
+        android:background="@drawable/roundrect"
+        android:gravity="center"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_below="@+id/View4"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Battery Level"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/View4"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_3sdp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/batteryLevel"
+        android:id="@+id/View5"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Charger State"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/View5"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="N/A"
+        android:id="@+id/chargeState"
+        android:layout_below="@+id/View5"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/roundrect"
+        android:gravity="center" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#cfcfcf"
+        android:layout_below="@+id/chargeState"
+        android:id="@+id/View6"
+        android:layout_marginTop="@dimen/_3sdp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:text="Avg. Battery Current(Amp)"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/View6" />
+
+        <TextView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="N/A"
+            android:id="@+id/avgCurrent"
+            android:background="@drawable/roundrect"
+            android:gravity="center"
+            android:layout_alignBaseline="@+id/textView7"
+            android:layout_alignBottom="@+id/textView7"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+</LinearLayout>

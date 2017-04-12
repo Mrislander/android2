@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_weight="0.5">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/rotationGroup">
+
+            <RadioButton
+                android:text="RightSide Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rightsideUpBtn"
+                android:layout_margin="@dimen/_10sdp" />
+
+            <RadioButton
+                android:text="Upside Down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/upsideDownBtn"
+                android:layout_margin="@dimen/_10sdp"/>
+
+            <RadioButton
+                android:text="+ Terminal Down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/positiveDownBtn"
+                android:layout_margin="@dimen/_10sdp"/>
+
+            <RadioButton
+                android:text="- Terminal Down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/negitiveDownBtn"
+                android:layout_margin="@dimen/_10sdp"/>
+
+            <RadioButton
+                android:text="Label Up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/markUpBth"
+                android:layout_margin="@dimen/_10sdp"/>
+
+            <RadioButton
+                android:text="Label  Down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/markDownBth"
+                android:layout_margin="@dimen/_10sdp"/>
+        </RadioGroup>
+        </LinearLayout>
+
+    <android.support.percent.PercentRelativeLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.4"
+        android:layout_gravity="center">
+
+        <ImageView
+            app:layout_widthPercent="100%"
+            app:layout_aspectRatio="148%"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/rightsideup"
+            android:id="@+id/batteryRotation"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+            </android.support.percent.PercentRelativeLayout>
+
+</LinearLayout>

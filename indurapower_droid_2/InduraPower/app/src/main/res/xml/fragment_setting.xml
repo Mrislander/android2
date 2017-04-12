@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:title="@string/pref_units_label"
+        android:key="@string/pref_units_key"
+        android:defaultValue="@string/pref_units_imperial"
+        android:entryValues="@array/pref_units_values"
+        android:entries="@array/pref_units_options" />
+    <CheckBoxPreference
+        android:key="@string/pref_mode_key"
+        android:title="Enable Diagnostics Mode"
+        android:summary="Full Battery Status"
+        android:defaultValue="false"
+        />
+    <CheckBoxPreference
+        android:key="@string/pref_ble_adv_mode_key"
+        android:title="Keep Advertising Mode"
+        android:summary="Enable if you have trouble connecting to battery"
+        android:defaultValue="false"
+        />
+</PreferenceScreen>

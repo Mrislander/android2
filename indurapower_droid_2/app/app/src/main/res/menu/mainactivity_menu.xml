@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@id/material_drawer_menu_default_group">
+        <item
+            android:id="@+id/menu_1"
+            android:title="MENU"
+            android:checkable="false"
+            app:showAsAction="never">
+            <menu>
+                <item
+                    android:id="@+id/sub_menu_1"
+                    android:title="@string/title_section1"
+                    android:checked="true"
+                    android:icon="@drawable/batterieswhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_2"
+                    android:title="@string/title_section2"
+
+                    android:icon="@drawable/profilewhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_3"
+
+                    android:title="@string/title_section3"
+                    android:icon="@drawable/connect_new_batterieswhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_4"
+
+                    android:title="@string/title_section4"
+                    android:icon="@drawable/buy_batterieswhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_5"
+
+                    android:title="@string/title_section5"
+                    android:icon="@drawable/supportwhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_6"
+
+                    android:title="@string/title_section6"
+                    android:icon="@drawable/settingswhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/sub_menu_7"
+
+                    android:title="@string/title_section7"
+                    android:icon="@drawable/logout_white"
+                    app:showAsAction="never" />
+
+            </menu>
+        </item>
+    </group>
+</menu>

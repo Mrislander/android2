@@ -1,0 +1,88 @@
+<!--
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:background="@drawable/car_bg"
+    android:scaleType="centerCrop">
+   <TextView android:layout_height="match_parent"
+       android:id="@+id/demoText"
+       android:visibility="invisible"
+       android:layout_width="match_parent"
+       android:text="DEMO"
+       android:textSize="@dimen/_100sdp"
+       android:rotation="-45"
+       android:textColor="#76ff6529"
+       android:gravity="center"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp" />
+
+    <com.elitise.appv2.Logo_pathsView
+        android:id="@+id/logoBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+
+    <FrameLayout
+            android:id="@+id/normal_fragment_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+             android:layout_above="@+id/statusBar"
+            android:layout_below="@id/logoBar"
+            android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/diag_fragment_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/logoBar"
+        android:layout_above="@+id/statusBar"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/phone_fragment_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/logoBar"
+        android:layout_above="@+id/statusBar"
+        android:visibility="visible" />
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fragment_animation_container"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:visibility="visible"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_15sdp"
+        android:text="Status: "
+        android:id="@+id/statusBar"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

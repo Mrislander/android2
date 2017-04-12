@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "781617043105",
+    "firebase_url": "https://indurapower-app.firebaseio.com",
+    "project_id": "indurapower-app",
+    "storage_bucket": "indurapower-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781617043105:android:2783c9e435d2b782",
+        "android_client_info": {
+          "package_name": "com.elitise.appv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781617043105-84nbdt892vu49bl81eeilfs00jbu3omh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJQM5IFZsF_msFc0e77Soc7pK5TV-rElc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
